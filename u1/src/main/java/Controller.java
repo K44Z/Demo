@@ -63,6 +63,7 @@ public class Controller extends interfaces.IController{
 //                for (int i=0;i<selectedFiles.size();i++){
 //                    selectedFilesNames[i] = selectedFiles.get(i).getName();
 //                }
+                //this wasnt here
 
 
                 view.setLvPlayList(selectedFiles);
