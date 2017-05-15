@@ -1,16 +1,7 @@
-# FPT-Ubung1
-Current version: Friday Nightly Release Build 1.0
-#Beschreibung
-In unserer FPT Uebung 1 sollen wir in Gruppen einen Mediaplayer erstellen dazu wurde ein Projektskelet mit 3 Interface zurverfügungg gestellt
+Hier sind vergangene Patchnotes zu finden.
 
-Aufgabe war es diese zu implementieren und dazugehörige Funktionalitäten hinzuzüfen.
+Friday Nightly Release Build 1.0 (12 Mai 2017 23:45uhr)
 
-Hier wird der Fortschritt aktuell gehalten
-
-Friday Nightly Release Build 1.0 
-Die Aktuellste Version ist NRB1.0 in dieser Version sind GUI und und diverse Methoden schon vorhanden, aktuell fehlen die Soundausgabe und Editierung von Metadaten.
-
-Patchnotes (Aus Merge Beschreibung)
 Short version
 increased core readability and added a little fun
 
@@ -38,4 +29,4 @@ Fixed:
 - access modifiers: review every variable and modify its access modifiers, each variable should be private,
                   needed variable could be access with getVariablename()
 
-- re-comment every class as a result of the patch
+- re-comment every class as a result of th
