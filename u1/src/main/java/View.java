@@ -23,12 +23,13 @@ public class View extends BorderPane implements interfaces.IView{
     private VBox bottomControl;
     private Label lbRemain;
     private ToggleButton btPlayPause;
-    private Button btNext;
+    private Button btNext,btAdd;
     private Slider sliderProgress;
 
     private MenuBar menuBar;
     private Menu menuGeneral, menuHelp;
     private MenuItem menuItemOpenDetails, menuItemOpenFile, menuItemOpenDelete, menuItemAbout;
+
 
 //    ctor
     public View(){
@@ -57,6 +58,7 @@ public class View extends BorderPane implements interfaces.IView{
         lbRemain = new Label("Zeit");
         btPlayPause = new ToggleButton("▶");
         btNext = new Button("⏭");
+        btAdd = new Button("Add selected songs to queue");
 
 
         sliderProgress = new Slider();
@@ -67,6 +69,7 @@ public class View extends BorderPane implements interfaces.IView{
         bottomControl.getChildren().add(sliderProgress);
         bottomControl.getChildren().add(btPlayPause);
         //bottomControl.getChildren().add(btNext);
+        bottomControl.getChildren().add(btAdd);
 
     }
 
@@ -98,32 +101,70 @@ public class View extends BorderPane implements interfaces.IView{
     }
 
 //    NOTE Im note describe the following methods because they just attach events to every object
-    public void addMenuItemOpenDeleteEventHandler(EventHandler<ActionEvent> eventHandler ){
-        menuItemOpenDelete.addEventHandler(ActionEvent.ACTION, eventHandler);
 
+    public void addMenuItemLoadEventHandler(EventHandler<ActionEvent> eventHandler) {
+        menuItemOpenFile.addEventHandler(ActionEvent.ACTION, eventHandler);
     }
 
     public void addMenuItemDetailEventHandler(EventHandler<ActionEvent> eventHandler ){
         menuItemOpenDetails.addEventHandler(ActionEvent.ACTION, eventHandler);
     }
 
-    public void addButtonPlayPauseEventHandler(EventHandler<ActionEvent> eventHandler) {
-        btPlayPause.addEventHandler(ActionEvent.ACTION, eventHandler);
-    }
+    public void addMenuItemOpenDeleteEventHandler(EventHandler<ActionEvent> eventHandler ){
+        menuItemOpenDelete.addEventHandler(ActionEvent.ACTION, eventHandler);
 
-    public void addMenuItemLoadEventHandler(EventHandler<ActionEvent> eventHandler) {
-        menuItemOpenFile.addEventHandler(ActionEvent.ACTION, eventHandler);
     }
 
     public void addMenuItemAboutEventHandler(EventHandler<ActionEvent> eventHandler) {
         menuItemAbout.addEventHandler(ActionEvent.ACTION, eventHandler);
     }
 
+    public void addButtonPlayPauseEventHandler(EventHandler<ActionEvent> eventHandler) {
+        btPlayPause.addEventHandler(ActionEvent.ACTION, eventHandler);
+    }
+
+    public void addButtonAddEventHandler(EventHandler<ActionEvent> eventHandler) {
+        btAdd.addEventHandler(ActionEvent.ACTION, eventHandler);
+    }
+
+
     public void setLvPlayList (List<File> s ){
+        lvPlayList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         for (int i=0;i<s.size();i++){
             File songPath =  s.get(i);
             lvPlayList.getItems().add(songPath.getName());
         }
+
+
+//        selectedSongs = lvPlayList.getSelectionModel().getSelectedItems();
+//        lvQueue.getItems().add(selectedSongs);
+    }
+
+    public void setLvQueue (List<File> s ){
+
+        try {
+            for (int i=0;i<s.size();i++) {
+                File songPath = s.get(i);
+//                lvQueue.getItems().add(songPath.getName());
+                lvQueue.getItems().add(s);
+            }
+        }
+        catch(Exception ex){
+            core.util.showExceptionMessage(ex);
+        }
+
+    }
+
+    /**
+     * This method takes a list of files from a ListView and returns only the selected files in that ListView.
+     * @param
+     */
+    public List<File> getSelectedLvPlaylist (){
+        List<File> selectedSongs
+        for (int i=0;i<1000;i++){
+            selectedSongs = lvPlayList.getSelectionModel().getSelected;
+        }
+        return selectedSongs;
     }
 
     public void togglePlayPause() {

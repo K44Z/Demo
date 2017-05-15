@@ -25,6 +25,7 @@ public class Controller extends interfaces.IController{
 
     private Model model;
     private View view;
+    public List<File> songsToAdd;
 
     private Map<String, String> locale = new HashMap<>();
 
@@ -40,6 +41,7 @@ public class Controller extends interfaces.IController{
         this.view.addMenuItemAboutEventHandler(e -> menuItemAboutEventHandler(e));
 
         this.view.addButtonPlayPauseEventHandler(e -> playPause(e));
+        this.view.addButtonAddEventHandler(e -> btAddToQueue(e));
 
         locale = core.util.load(getClass().getName());
 
@@ -49,7 +51,7 @@ public class Controller extends interfaces.IController{
 
 
     /**
-     * Loads any directory
+     * Loads multiple files from any directory
      * @param e
      */
     public void menuItemLoadEventHandler(javafx.event.ActionEvent e) {
@@ -58,18 +60,8 @@ public class Controller extends interfaces.IController{
             FileChooser fc = new FileChooser();
             fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files","*.mp3"));
             List<File> selectedFiles = fc.showOpenMultipleDialog(null);
-            if (selectedFiles != null) {
-//                String[] selectedFilesNames = new String [selectedFiles.size()] ;
-//                for (int i=0;i<selectedFiles.size();i++){
-//                    selectedFilesNames[i] = selectedFiles.get(i).getName();
-//                }
-                //this wasnt here
-
-
+            if (selectedFiles != null)
                 view.setLvPlayList(selectedFiles);
-            }
-
-
         }
         catch(Exception ex){
             core.util.showExceptionMessage(ex);
@@ -187,6 +179,17 @@ public class Controller extends interfaces.IController{
         view.togglePlayPause();
         // pause player
 
+    }
+
+    /**
+     * This method adds selected items from the playlist to the queue
+     * @param e
+     */
+    void btAddToQueue (javafx.event.ActionEvent e){
+//        List<File> selectedSongs = view.getSelectedLvPlaylist();
+
+
+        view.setLvQueue(view.getSelectedLvPlaylist());
     }
 
 }
